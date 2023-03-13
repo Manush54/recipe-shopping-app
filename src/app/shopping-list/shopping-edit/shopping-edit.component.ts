@@ -8,15 +8,22 @@ import { Ingrediant } from 'src/app/shared/ingrediant.model';
 })
 export class ShoppingEditComponent{
 
-  @ViewChild('nameInput', {static:true}) nameInput: ElementRef
-  @ViewChild('amountInput', {static:true}) amountInput: ElementRef
+  // Fetching name and amount input to extract the values entered by the user
+  @ViewChild('nameInput', {static:false}) nameInput: ElementRef
+  @ViewChild('amountInput', {static:false}) amountInput: ElementRef
   
   @Output() addIngrediant = new EventEmitter<Ingrediant>()
   
-  onSubmitDetails(){
-    this.addIngrediant.emit({
-      name: this.nameInput.nativeElement.value,
-      amount: this.amountInput.nativeElement.value
-    })
+  /** onAddIngrediantDetails()
+   *  Aim - Emit the submitted details of the ingrediant to be added.
+   *  Fetched by Shopping-list-component to add the ingrediant to the current ingrediants list.
+   * */
+  onAddIngrediantDetails(){
+    this.addIngrediant.emit(new Ingrediant(
+            this.nameInput.nativeElement.value, 
+            this.amountInput.nativeElement.value
+        ))
+    this.nameInput.nativeElement.value = ''
+    this.amountInput.nativeElement.value = null
   }
 }
