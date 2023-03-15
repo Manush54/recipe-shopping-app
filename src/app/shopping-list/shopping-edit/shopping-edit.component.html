@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)="onAddIngrediantDetails(f)" #f="ngForm">
+    <form (ngSubmit)="onAddingredientDetails(f)" #f="ngForm">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
@@ -37,7 +37,7 @@
           <button 
             class="btn btn-danger" 
             type="button" 
-            (click)="onDeleteIngrediant()"
+            (click)="onDeleteingredient()"
             *ngIf="editMode"
           >
           Delete</button>

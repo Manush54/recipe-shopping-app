@@ -3,7 +3,7 @@
  * for any file to use. 
 */
 import { Injectable } from "@angular/core";
-import { Ingrediant } from "../shared/ingrediant.model";
+import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model"
 
@@ -14,13 +14,13 @@ export class RecipeService {
           'A Test Recipe', 
           'This is simply a test', 
           'https://assets.cntraveller.in/photos/60ba1de12267328f9d2456f0/master/pass/dosa-recipes-1366x768.jpg',
-          [new Ingrediant('Rava', 500), new Ingrediant('Oil', 100)]
+          [new Ingredient('Rava', 500), new Ingredient('Oil', 100)]
           ),
           new Recipe(
             'A Test Recipe 2', 
             'This is a complicated test', 
             'https://assets.cntraveller.in/photos/60ba1de12267328f9d2456f0/master/pass/dosa-recipes-1366x768.jpg',
-            [new Ingrediant('Rava', 500), new Ingrediant('Water', 500)]
+            [new Ingredient('Rava', 500), new Ingredient('Water', 500)]
         )
       ];
 
@@ -34,7 +34,7 @@ export class RecipeService {
         return this.recipes[index]
       }
 
-      addIngrediantsToShoppingList(ingrediants: Ingrediant[]) {
-        this.slService.addIngrediants(ingrediants)
+      addingredientsToShoppingList(ingredients: Ingredient[]) {
+        this.slService.addingredients(ingredients)
       }
 }

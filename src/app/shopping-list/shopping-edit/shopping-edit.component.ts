@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Ingrediant } from 'src/app/shared/ingrediant.model';
+import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { NgForm, NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,7 +15,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
   subscription: Subscription
   editMode = false
   editedItemIndex: number;
-  editedItem: Ingrediant;
+  editedItem: Ingredient;
 
   constructor(private shoppingListService: ShoppingListService) {
     
@@ -27,7 +27,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
       (index) => {
         this.editedItemIndex = index;
         this.editMode = true;
-        this.editedItem = this.shoppingListService.getIngrediant(index)
+        this.editedItem = this.shoppingListService.getingredient(index)
         this.slForm.setValue({
           name: this.editedItem.name,
           amount: this.editedItem.amount
@@ -36,23 +36,23 @@ export class ShoppingEditComponent implements OnInit, OnDestroy{
     )
   }
 
-  /** onAddIngrediantDetails()
-   *  Aim - Emit the submitted details of the ingrediant to be added.
-   *  Fetched by Shopping-list-component to add the ingrediant to the current ingrediants list.
+  /** onAddingredientDetails()
+   *  Aim - Emit the submitted details of the ingredient to be added.
+   *  Fetched by Shopping-list-component to add the ingredient to the current ingredients list.
    * */
-  onAddIngrediantDetails(form: NgForm){
+  onAddingredientDetails(form: NgForm){
     const value = form.value
-    const newIngrediant = new Ingrediant(value.name, value.amount)
+    const newingredient = new Ingredient(value.name, value.amount)
     if(this.editMode){
-      this.shoppingListService.updateIngrediant(this.editedItemIndex, newIngrediant)
+      this.shoppingListService.updateingredient(this.editedItemIndex, newingredient)
     } else {
-      this.shoppingListService.addIngrediant(newIngrediant)
+      this.shoppingListService.addingredient(newingredient)
     }
     this.clearForm()
   }
   
-  onDeleteIngrediant() {
-    this.shoppingListService.deleteIngrediant(this.editedItemIndex)
+  onDeleteingredient() {
+    this.shoppingListService.deleteingredient(this.editedItemIndex)
     this.clearForm()
   }
   
