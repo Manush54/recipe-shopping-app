@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -14,7 +14,8 @@ export class RecipeDetailComponent implements OnInit{
 
   constructor(
       private recipeService: RecipeService, 
-      private activeRoute: ActivatedRoute){}
+      private activeRoute: ActivatedRoute,
+      private router : Router){}
 
   ngOnInit(): void {
     this.activeRoute.params
@@ -25,7 +26,12 @@ export class RecipeDetailComponent implements OnInit{
         }
       )
   }
-  onCheckOut() {
+  onCheckout() {
     this.recipeService.addingredientsToShoppingList(this.recipe.ingredients)
+  }
+
+  onDeleteIngrediant() {
+    this.recipeService.deleteRecipe(this.id)
+    this.router.navigate(['/recipes'])
   }
 }
