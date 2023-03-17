@@ -12,22 +12,28 @@ import { Recipe } from "./recipe.model"
 export class RecipeService {
     recipesChanged = new Subject<Recipe[]>
 
-    private recipes : Recipe[] = [
-        new Recipe(
-          'A Test Recipe', 
-          'This is simply a test', 
-          'https://assets.cntraveller.in/photos/60ba1de12267328f9d2456f0/master/pass/dosa-recipes-1366x768.jpg',
-          [new Ingredient('Rava', 500), new Ingredient('Oil', 100)]
-          ),
-          new Recipe(
-            'A Test Recipe 2', 
-            'This is a complicated test', 
-            'https://assets.cntraveller.in/photos/60ba1de12267328f9d2456f0/master/pass/dosa-recipes-1366x768.jpg',
-            [new Ingredient('Rava', 500), new Ingredient('Water', 500)]
-        )
-      ];
+    // private recipes : Recipe[] = [
+    //     new Recipe(
+    //       'A Test Recipe', 
+    //       'This is simply a test', 
+    //       'https://assets.cntraveller.in/photos/60ba1de12267328f9d2456f0/master/pass/dosa-recipes-1366x768.jpg',
+    //       [new Ingredient('Rava', 500), new Ingredient('Oil', 100)]
+    //       ),
+    //       new Recipe(
+    //         'A Test Recipe 2', 
+    //         'This is a complicated test', 
+    //         'https://assets.cntraveller.in/photos/60ba1de12267328f9d2456f0/master/pass/dosa-recipes-1366x768.jpg',
+    //         [new Ingredient('Rava', 500), new Ingredient('Water', 500)]
+    //     )
+    //   ];
 
+    private recipes : Recipe[] = []
       constructor(private slService: ShoppingListService) {}
+      
+      setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes
+        this.recipesChanged.next(this.recipes.slice())
+      }
    
       getRecipes() {
         return this.recipes.slice();
