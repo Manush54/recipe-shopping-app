@@ -1,6 +1,6 @@
 # RecipeBookApp
 
-[Live Project](https://ng-course-recipe-book-9e0d3.web.app/auth)
+## Live Project : [Recipe-Shopping-App](https://ng-course-recipe-book-9e0d3.web.app/auth)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
 
